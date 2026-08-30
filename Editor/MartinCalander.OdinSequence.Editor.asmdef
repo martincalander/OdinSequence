@@ -1,0 +1,24 @@
+{
+  "name": "MartinCalander.OdinSequence.Editor",
+  "rootNamespace": "MartinCalander.OdinSequence.Editor",
+  "references": [
+    "MartinCalander.OdinSequence.Runtime"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "Sirenix.OdinInspector.Editor.dll",
+    "Sirenix.Utilities.dll",
+    "Sirenix.Utilities.Editor.dll"
+  ],
+  "autoReferenced": true,
+  "defineConstraints": [
+    "ODIN_INSPECTOR"
+  ],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

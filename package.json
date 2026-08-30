@@ -1,0 +1,36 @@
+{
+  "name": "com.martincalander.odin-sequence",
+  "version": "0.1.0",
+  "displayName": "Odin Sequence",
+  "description": "A compact, editable timeline for lists of timed records in Odin Inspector.",
+  "unity": "6000.4",
+  "documentationUrl": "https://github.com/martincalander/OdinSequence/blob/main/Documentation~/index.md",
+  "changelogUrl": "https://github.com/martincalander/OdinSequence/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/martincalander/OdinSequence/blob/main/LICENSE.md",
+  "license": "MIT",
+  "keywords": [
+    "odin",
+    "inspector",
+    "timeline",
+    "sequence",
+    "editor"
+  ],
+  "author": {
+    "name": "Martin Calander"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/martincalander/OdinSequence.git"
+  },
+  "dependencies": {
+    "com.unity.modules.imgui": "1.0.0"
+  },
+  "samples": [
+    {
+      "displayName": "Basic Sequence",
+      "description": "A component with editable timed records split across lanes.",
+      "path": "Samples~/Basic"
+    }
+  ],
+  "hideInEditor": false
+}

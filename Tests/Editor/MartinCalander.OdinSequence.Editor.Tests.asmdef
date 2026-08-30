@@ -1,0 +1,24 @@
+{
+  "name": "MartinCalander.OdinSequence.Editor.Tests",
+  "rootNamespace": "MartinCalander.OdinSequence.Tests",
+  "references": [
+    "MartinCalander.OdinSequence.Runtime",
+    "MartinCalander.OdinSequence.Editor"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": false,
+  "defineConstraints": [
+    "ODIN_INSPECTOR"
+  ],
+  "versionDefines": [],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "noEngineReferences": false
+}
