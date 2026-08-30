@@ -1,3 +1,5 @@
+![Odin Sequence](Documentation~/images/odin-sequence-banner.png)
+
 # Odin Sequence
 
 Odin Sequence turns any `IList` of timed records into a compact editable
@@ -6,8 +8,6 @@ precise timing: short cinematics, fighting-game moves, hitbox and hurtbox
 windows, combat abilities, animation phases, camera beats, VFX, and audio. It
 works with existing data models, with no timeline base class, interface, or
 custom editor window required.
-
-![Odin Sequence timeline editor in the Unity Inspector](Documentation~/images/odin-sequence-inspector.png)
 
 ## Requirements
 
@@ -37,7 +37,9 @@ https://github.com/martincalander/OdinSequence.git
 
 Install and activate Odin Inspector to enable the sequence strip drawer.
 
-## Use
+## Usage
+
+![Editing a fighter move timeline with Odin Sequence](Documentation~/images/odin-sequence-usage.gif)
 
 ```csharp
 using System;
