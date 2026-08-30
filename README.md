@@ -4,6 +4,8 @@ Odin Sequence turns any `IList` of timed records into a compact editable
 timeline in the Inspector. It works with existing data models. No timeline base
 class, interface, or custom editor window is required.
 
+![Odin Sequence timeline editor in the Unity Inspector](Documentation~/images/odin-sequence-inspector.png)
+
 ## Requirements
 
 - Unity 6000.4 or newer
