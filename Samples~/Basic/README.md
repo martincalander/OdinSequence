@@ -1,8 +1,12 @@
-# Basic Sequence
+# Fighter Move Sequence
 
-Add `SequenceStripExample` to a GameObject and open it in Odin Inspector. The
-sample shows labels, colors, two lanes, quarter-unit snapping, and the normal
-list fallback.
+Add `Fighter` to a GameObject and open it in Odin Inspector. The sample lays out
+a fighting-game attack across animation, hitbox, hurtbox, camera, VFX, and audio
+lanes. Its records cover startup, the active hitbox and counterable hurtbox
+window, impact feedback, and recovery with 1/60-second snapping.
+
+Odin Sequence edits these records but does not play them. Connect the list to
+your project's combat, animation, camera, VFX, and audio runtime systems.
 
 Try these interactions:
 
@@ -10,3 +14,4 @@ Try these interactions:
 - Drag the right edge to resize it.
 - Hold Control or Command while dragging to bypass snapping.
 - Use the mouse wheel over the strip to zoom.
+- Adjust startup, active, and recovery durations to tune the move's feel.

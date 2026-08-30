@@ -27,8 +27,8 @@
   },
   "samples": [
     {
-      "displayName": "Basic Sequence",
-      "description": "A component with editable timed records split across lanes.",
+      "displayName": "Fighter Move Sequence",
+      "description": "A fighting-game attack with animation, hitbox, hurtbox, camera, VFX, and audio timing lanes.",
       "path": "Samples~/Basic"
     }
   ],

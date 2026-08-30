@@ -2,6 +2,13 @@
 
 All notable changes to this package are documented here.
 
+## [Unreleased]
+
+### Changed
+
+- Replaced the Basic Sequence sample with a Fighter Move Sequence covering startup, hitbox and hurtbox windows, recovery, camera, VFX, and audio timing.
+- Expanded the documentation with short cinematic, fighting-game, and combat ability use cases and clarified that projects provide runtime playback.
+
 ## [0.1.0] - 2026-08-30
 
 ### Added

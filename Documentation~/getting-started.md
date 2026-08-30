@@ -21,7 +21,7 @@ Apply `SequenceStripAttribute` to a field or property whose value implements
 
 ```csharp
 [SequenceStrip("Start", "Duration")]
-public List<Cue> Cues;
+public List<FighterTimelineEvent> Attack;
 ```
 
 The values may use any built-in numeric type. Integer fields work, but their
@@ -33,14 +33,26 @@ Lane, label, and color are optional:
 
 ```csharp
 [SequenceStrip(
-    "Timing.Start",
-    "Timing.Duration",
-    LaneMember = "Track",
-    LabelMember = "DisplayName",
-    ColorMember = "Tint")]
-public List<Cue> Cues;
+    nameof(FighterTimelineEvent.Start),
+    nameof(FighterTimelineEvent.Duration),
+    LaneMember = nameof(FighterTimelineEvent.Track),
+    LabelMember = nameof(FighterTimelineEvent.Label),
+    ColorMember = nameof(FighterTimelineEvent.Color),
+    SnapInterval = 1d / 60d)]
+public List<FighterTimelineEvent> Attack;
 ```
 
 Open the component in Odin Inspector. The strip appears above the normal list.
 If configuration is incomplete, the Inspector reports the issue and leaves the
 normal list available for repair.
+
+The **Fighter Move Sequence** Package Manager sample uses lanes for animation,
+hitboxes, hurtboxes, camera, VFX, and audio. Its records show the startup,
+active, and recovery phases of a fighting-game attack.
+
+## 5. Connect runtime playback
+
+Odin Sequence is the authoring surface. Your runtime code owns the clock,
+evaluates the timed records, and invokes the appropriate animation, hitbox,
+hurtbox, camera, VFX, or audio system. This keeps the data model and playback
+rules specific to your game.
