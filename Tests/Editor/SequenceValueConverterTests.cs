@@ -65,7 +65,7 @@ namespace MartinCalander.OdinSequence.Tests
         }
 
         [Test]
-        public void LaneAndColorConversions_AcceptExpectedSerializedShapes()
+        public void LaneAndColorConversions_HandleRoundingAndColor32()
         {
             Assert.That(SequenceValueConverter.TryReadLane(2.5f, out int lane), Is.True);
             Assert.That(lane, Is.EqualTo(3));

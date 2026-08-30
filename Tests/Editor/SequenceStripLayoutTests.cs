@@ -26,7 +26,7 @@ namespace MartinCalander.OdinSequence.Tests
         }
 
         [Test]
-        public void CalculateRange_EmptyInputGetsStableDefaultSpan()
+        public void CalculateRange_UsesDefaultSpanForEmptyList()
         {
             SequenceStripTimeRange range = SequenceStripLayout.CalculateRange(
                 new List<SequenceStripItemData>(),
@@ -69,7 +69,7 @@ namespace MartinCalander.OdinSequence.Tests
         }
 
         [Test]
-        public void CalculateItemRect_MapsTimeAndLaneIntoContentArea()
+        public void CalculateItemRect_PlacesItemAtExpectedTimeAndLane()
         {
             SequenceStripItemData item = Item(0, 2d, 3d, 8);
             Rect rect = SequenceStripLayout.CalculateItemRect(

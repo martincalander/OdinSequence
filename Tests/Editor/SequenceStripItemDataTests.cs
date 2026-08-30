@@ -16,7 +16,7 @@ namespace MartinCalander.OdinSequence.Tests
         }
 
         [Test]
-        public void Constructor_PreservesRecordIdentityAndPresentation()
+        public void Constructor_AssignsEveryValue()
         {
             Color color = new Color(0.1f, 0.2f, 0.3f, 0.4f);
             var item = new SequenceStripItemData(7, 1.25d, 0.5d, -3, "Cue", color);

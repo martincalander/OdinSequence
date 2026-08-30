@@ -52,7 +52,7 @@ namespace MartinCalander.OdinSequence.Editor
                 !typeof(IList).IsAssignableFrom(Property.ValueEntry.TypeOfValue))
             {
                 EditorGUILayout.HelpBox(
-                    $"{nameof(SequenceStripAttribute)} can only be used on a value that implements IList.",
+                    "[SequenceStrip] only works on IList fields and properties.",
                     MessageType.Error);
                 CallNextDrawer(label);
                 return;
@@ -62,7 +62,7 @@ namespace MartinCalander.OdinSequence.Editor
             {
                 DrawToolbar(label, new SequenceStripTimeRange(0d, 1d));
                 EditorGUILayout.HelpBox(
-                    "Odin Sequence edits one inspected target at a time. The normal list remains available for multi-object editing.",
+                    "The timeline only supports one selected object at a time. You can still edit multiple objects in the list below.",
                     MessageType.Info);
                 CallNextDrawer(label);
                 return;
@@ -73,7 +73,7 @@ namespace MartinCalander.OdinSequence.Editor
             {
                 DrawToolbar(label, new SequenceStripTimeRange(0d, 1d));
                 EditorGUILayout.HelpBox(
-                    "The list is null. Create it with the normal list drawer below.",
+                    "The list is null. Create it in the list below.",
                     MessageType.Warning);
                 CallNextDrawer(label);
                 return;
@@ -83,16 +83,16 @@ namespace MartinCalander.OdinSequence.Editor
             SequenceStripTimeRange range = SequenceStripLayout.CalculateRange(itemData, true);
             DrawToolbar(label, range);
 
-            bool needsFallback = false;
+            bool showFallbackList = false;
             if (list.Count == 0)
             {
-                DrawEmptyState("The list is empty. Add an item below to start the sequence.");
-                needsFallback = true;
+                DrawEmptyState("The list is empty. Add an item below to get started.");
+                showFallbackList = true;
             }
             else if (bindings.Count == 0)
             {
-                DrawEmptyState("No list item has readable start and duration values.");
-                needsFallback = true;
+                DrawEmptyState("None of the items have readable start and duration values.");
+                showFallbackList = true;
             }
             else
             {
@@ -102,7 +102,7 @@ namespace MartinCalander.OdinSequence.Editor
             if (issues.Count > 0)
                 EditorGUILayout.HelpBox(string.Join("\n", issues), MessageType.Warning);
 
-            if (showList || needsFallback)
+            if (showList || showFallbackList)
                 CallNextDrawer(label);
         }
 
@@ -130,16 +130,16 @@ namespace MartinCalander.OdinSequence.Editor
             }
 
             Property.Children.Update();
-            int availableCount = Math.Min(list.Count, Property.Children.Count);
-            if (availableCount < list.Count)
-                AddIssue("Odin has not resolved every list element yet. The normal list can still be edited.");
+            int resolvedCount = Math.Min(list.Count, Property.Children.Count);
+            if (resolvedCount < list.Count)
+                AddIssue("Odin hasn't loaded every list item yet. You can still edit the list below.");
 
-            for (int index = 0; index < availableCount; index++)
+            for (int index = 0; index < resolvedCount; index++)
             {
                 InspectorProperty element = Property.Children[index];
                 if (element == null || element.ValueEntry == null || element.ValueEntry.WeakSmartValue == null)
                 {
-                    AddIssue($"Item {index} is null and was skipped.");
+                    AddIssue($"Item {index} is null, so it was skipped.");
                     continue;
                 }
 
@@ -153,7 +153,7 @@ namespace MartinCalander.OdinSequence.Editor
 
                 if (duration < 0d)
                 {
-                    AddIssue($"Item {index} has a negative duration. It is shown as a zero-length item.");
+                    AddIssue($"Item {index} has a negative duration, so it is drawn at zero length.");
                     duration = 0d;
                 }
 
@@ -169,21 +169,21 @@ namespace MartinCalander.OdinSequence.Editor
                     }
                     else if (!SequenceValueConverter.TryReadLane(laneProperty.ValueEntry.WeakSmartValue, out lane))
                     {
-                        AddIssue($"Lane member '{Attribute.LaneMember}' on item {index} is not numeric. Lane 0 is used.");
+                        AddIssue($"Lane member '{Attribute.LaneMember}' on item {index} isn't numeric. Lane 0 is used.");
                         laneProperty = null;
                         lane = 0;
                     }
                 }
 
-                string fallbackLabel = $"Item {index}";
-                string itemLabel = fallbackLabel;
+                string defaultLabel = $"Item {index}";
+                string itemLabel = defaultLabel;
                 if (!string.IsNullOrWhiteSpace(Attribute.LabelMember))
                 {
                     InspectorProperty labelProperty = OdinMemberPath.Resolve(element, Attribute.LabelMember);
                     if (labelProperty == null || labelProperty.ValueEntry == null)
                         AddIssue($"Label member '{Attribute.LabelMember}' was not found on item {index}.");
                     else
-                        itemLabel = SequenceValueConverter.ReadLabel(labelProperty.ValueEntry.WeakSmartValue, fallbackLabel);
+                        itemLabel = SequenceValueConverter.ReadLabel(labelProperty.ValueEntry.WeakSmartValue, defaultLabel);
                 }
 
                 Color color = DefaultColor(index);
@@ -193,7 +193,7 @@ namespace MartinCalander.OdinSequence.Editor
                     if (colorProperty == null || colorProperty.ValueEntry == null)
                         AddIssue($"Color member '{Attribute.ColorMember}' was not found on item {index}.");
                     else if (!SequenceValueConverter.TryReadColor(colorProperty.ValueEntry.WeakSmartValue, out color))
-                        AddIssue($"Color member '{Attribute.ColorMember}' on item {index} must be Color or Color32.");
+                        AddIssue($"Color member '{Attribute.ColorMember}' on item {index} must be a Color or Color32.");
                 }
 
                 color.a = Mathf.Max(0.35f, color.a);
@@ -333,16 +333,16 @@ namespace MartinCalander.OdinSequence.Editor
             double scrollPadding = Math.Max(range.Span, visibleSpan);
             double scrollMinimum = range.Start - scrollPadding;
             double scrollMaximum = range.End + scrollPadding;
-            float previousHorizontal = (float)viewStart;
-            float changedHorizontal = GUI.HorizontalScrollbar(
+            float oldViewStart = (float)viewStart;
+            float newViewStart = GUI.HorizontalScrollbar(
                 horizontalScrollbar,
-                previousHorizontal,
+                oldViewStart,
                 (float)visibleSpan,
                 (float)scrollMinimum,
                 (float)(scrollMaximum + visibleSpan));
-            if (!Mathf.Approximately(previousHorizontal, changedHorizontal))
+            if (!Mathf.Approximately(oldViewStart, newViewStart))
             {
-                viewStart = changedHorizontal;
+                viewStart = newViewStart;
                 fitView = false;
             }
 
@@ -587,16 +587,16 @@ namespace MartinCalander.OdinSequence.Editor
 
                 selectedIndex = hit.Binding.Data.Index;
                 hit.Binding.Element.State.Expanded = true;
-                DragMode requestedMode = DragMode.None;
+                DragMode nextDragMode = DragMode.None;
                 if (hit.Binding.CanResize && Intersect(hit.RightHandle, laneViewport).Contains(current.mousePosition))
-                    requestedMode = DragMode.ResizeRight;
+                    nextDragMode = DragMode.ResizeRight;
                 else if (hit.Binding.CanMove)
-                    requestedMode = DragMode.Move;
+                    nextDragMode = DragMode.Move;
 
-                if (requestedMode != DragMode.None)
+                if (nextDragMode != DragMode.None)
                 {
                     Property.RecordForUndo("Edit sequence item");
-                    dragMode = requestedMode;
+                    dragMode = nextDragMode;
                     dragControlId = controlId;
                     dragBinding = hit.Binding;
                     dragPointerTime = SequenceStripLayout.PixelToTime(

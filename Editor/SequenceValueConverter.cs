@@ -119,15 +119,15 @@ namespace MartinCalander.OdinSequence.Editor
 
         public static bool TryReadColor(object value, out Color color)
         {
-            if (value is Color direct)
+            if (value is Color colorValue)
             {
-                color = direct;
+                color = colorValue;
                 return true;
             }
 
-            if (value is Color32 packed)
+            if (value is Color32 color32Value)
             {
-                color = packed;
+                color = color32Value;
                 return true;
             }
 
