@@ -14,7 +14,7 @@ public property tree.
 | `LabelMember` | None | Text shown on each block |
 | `ColorMember` | None | `Color` or `Color32` block tint |
 | `SnapInterval` | `0.1` | Drag and resize grid; zero disables it |
-| `MinimumDuration` | `0.01` | Smallest duration produced by resize |
+| `MinimumDuration` | `0.01` | Smallest duration produced by resize; rounded up for integer duration members |
 | `LaneHeight` | `28` | Height of one lane in pixels |
 | `MaximumHeight` | `220` | Maximum visible lane area before scrolling |
 | `ShowList` | `true` | Initial state of the normal list drawer |

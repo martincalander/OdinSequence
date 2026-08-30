@@ -65,6 +65,38 @@ namespace MartinCalander.OdinSequence.Tests
         }
 
         [Test]
+        public void ResolveMinimumDuration_DoesNotRoundIntegerDurationsToZero()
+        {
+            double minimum = SequenceValueConverter.ResolveMinimumDuration(0.01d, typeof(int));
+
+            Assert.That(minimum, Is.EqualTo(1d));
+            Assert.That(SequenceValueConverter.TryConvertNumber(minimum, typeof(int), out object converted), Is.True);
+            Assert.That(converted, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void ResolveMinimumDuration_UsesTheNextWholeUnitForIntegerTypes()
+        {
+            Assert.That(
+                SequenceValueConverter.ResolveMinimumDuration(1.25d, typeof(int?)),
+                Is.EqualTo(2d));
+        }
+
+        [Test]
+        public void ResolveMinimumDuration_PreservesFractionalTypes()
+        {
+            Assert.That(
+                SequenceValueConverter.ResolveMinimumDuration(0.01d, typeof(float)),
+                Is.EqualTo(0.01d));
+            Assert.That(
+                SequenceValueConverter.ResolveMinimumDuration(double.NaN, typeof(double)),
+                Is.EqualTo(0.000001d));
+            Assert.That(
+                SequenceValueConverter.ResolveMinimumDuration(0.25d, null),
+                Is.EqualTo(0.25d));
+        }
+
+        [Test]
         public void LaneAndColorConversions_HandleRoundingAndColor32()
         {
             Assert.That(SequenceValueConverter.TryReadLane(2.5f, out int lane), Is.True);

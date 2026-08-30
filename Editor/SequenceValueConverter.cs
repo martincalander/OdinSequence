@@ -103,6 +103,34 @@ namespace MartinCalander.OdinSequence.Editor
             }
         }
 
+        public static double ResolveMinimumDuration(double configuredMinimum, Type destinationType)
+        {
+            const double fallbackMinimum = 0.000001d;
+            double minimum = SequenceStripLayout.IsFinite(configuredMinimum)
+                ? Math.Max(fallbackMinimum, configuredMinimum)
+                : fallbackMinimum;
+
+            if (destinationType == null)
+                return minimum;
+
+            Type type = Nullable.GetUnderlyingType(destinationType) ?? destinationType;
+
+            switch (Type.GetTypeCode(type))
+            {
+                case TypeCode.SByte:
+                case TypeCode.Byte:
+                case TypeCode.Int16:
+                case TypeCode.UInt16:
+                case TypeCode.Int32:
+                case TypeCode.UInt32:
+                case TypeCode.Int64:
+                case TypeCode.UInt64:
+                    return Math.Max(1d, Math.Ceiling(minimum));
+                default:
+                    return minimum;
+            }
+        }
+
         public static bool TryReadLane(object value, out int lane)
         {
             lane = 0;

@@ -6,6 +6,7 @@ All notable changes to this package are documented here.
 
 ### Changed
 
+- Kept resized integer durations at one whole unit or more instead of allowing them to round down to zero.
 - Switched the Fighter sample to integer frame timing with one-frame snapping.
 - Gated the runtime, Editor, test, and sample assemblies with `ODIN_INSPECTOR` so the package contributes no compiled assemblies when Odin is not installed.
 - Replaced the Basic Sequence sample with a Fighter Move Sequence covering startup, hitbox and hurtbox windows, recovery, camera, VFX, and audio timing.

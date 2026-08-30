@@ -44,7 +44,7 @@ namespace MartinCalander.OdinSequence
         /// <summary>Time between snap points. Set to zero to turn snapping off.</summary>
         public double SnapInterval { get; set; } = 0.1d;
 
-        /// <summary>Shortest duration allowed when resizing an item.</summary>
+        /// <summary>Shortest duration allowed when resizing an item. Integral members round up to a whole unit.</summary>
         public double MinimumDuration { get; set; } = 0.01d;
 
         /// <summary>Height of each lane, in pixels.</summary>

@@ -652,7 +652,10 @@ namespace MartinCalander.OdinSequence.Editor
             double delta = pointerTime - dragPointerTime;
             bool bypassSnap = current.control || current.command;
             double snap = snapEnabled && !bypassSnap ? Math.Max(0d, Attribute.SnapInterval) : 0d;
-            double minimumDuration = Math.Max(0.000001d, Attribute.MinimumDuration);
+            Type durationType = dragBinding.DurationProperty?.ValueEntry?.TypeOfValue;
+            double minimumDuration = SequenceValueConverter.ResolveMinimumDuration(
+                Attribute.MinimumDuration,
+                durationType);
 
             switch (dragMode)
             {
