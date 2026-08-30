@@ -11,8 +11,9 @@ class, interface, or custom editor window is required.
 - Unity 6000.4 or newer
 - Odin Inspector 4.0 or newer
 
-Odin Inspector is a separately licensed Asset Store product and is not included
-in this package.
+> [!WARNING]
+> Odin Inspector is a separately licensed Asset Store product and is not included
+> in this package.
 
 The runtime attribute has no Odin assembly dependency. The Editor integration
 is enabled only when Odin's canonical `ODIN_INSPECTOR` symbol is active.
