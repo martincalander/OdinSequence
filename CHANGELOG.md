@@ -6,6 +6,7 @@ All notable changes to this package are documented here.
 
 ### Changed
 
+- Gated the runtime, Editor, test, and sample assemblies with `ODIN_INSPECTOR` so the package contributes no compiled assemblies when Odin is not installed.
 - Replaced the Basic Sequence sample with a Fighter Move Sequence covering startup, hitbox and hurtbox windows, recovery, camera, VFX, and audio timing.
 - Expanded the documentation with short cinematic, fighting-game, and combat ability use cases and clarified that projects provide runtime playback.
 

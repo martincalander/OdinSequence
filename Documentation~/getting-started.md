@@ -2,9 +2,9 @@
 
 ## 1. Install requirements
 
-Use Unity 6000.4 or newer and install Odin Inspector 4.0 or newer. The runtime
-attribute can compile without Odin, but the sequence strip drawer is enabled
-only while Odin's `ODIN_INSPECTOR` symbol is active.
+Use Unity 6000.4 or newer and install Odin Inspector 4.0 or newer. Every package
+assembly is enabled only while Odin's `ODIN_INSPECTOR` symbol is active, so the
+package contributes no compiled assemblies when Odin is not installed.
 
 ## 2. Install the package
 

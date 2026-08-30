@@ -7,6 +7,7 @@ window, impact feedback, and recovery with 1/60-second snapping.
 
 Odin Sequence edits these records but does not play them. Connect the list to
 your project's combat, animation, camera, VFX, and audio runtime systems.
+The sample assembly is compiled only while `ODIN_INSPECTOR` is active.
 
 Try these interactions:
 

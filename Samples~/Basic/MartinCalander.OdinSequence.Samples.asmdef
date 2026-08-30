@@ -1,7 +1,9 @@
 {
-  "name": "MartinCalander.OdinSequence.Runtime",
-  "rootNamespace": "MartinCalander.OdinSequence",
-  "references": [],
+  "name": "MartinCalander.OdinSequence.Samples",
+  "rootNamespace": "MartinCalander.OdinSequence.Samples",
+  "references": [
+    "MartinCalander.OdinSequence.Runtime"
+  ],
   "includePlatforms": [],
   "excludePlatforms": [],
   "allowUnsafeCode": false,
@@ -12,5 +14,5 @@
     "ODIN_INSPECTOR"
   ],
   "versionDefines": [],
-  "noEngineReferences": true
+  "noEngineReferences": false
 }

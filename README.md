@@ -18,8 +18,9 @@ custom editor window required.
 > Odin Inspector is a separately licensed Asset Store product and is not included
 > in this package.
 
-The runtime attribute has no Odin assembly dependency. The Editor integration
-is enabled only when Odin's canonical `ODIN_INSPECTOR` symbol is active.
+The runtime, Editor, test, and sample assemblies are enabled only while Odin's
+canonical `ODIN_INSPECTOR` symbol is active. Without Odin installed, this
+package contributes no compiled assemblies to the project.
 
 > [!NOTE]
 > Odin Sequence authors timing data. Your project provides runtime playback and

@@ -16,8 +16,9 @@ The package targets Unity 6000.4 or newer and Odin Inspector 4.0 or newer. It
 uses the public Odin drawer and property-tree APIs. Odin is required in the
 project but is not redistributed by this package.
 
-The runtime attribute remains available without Odin. The Editor assembly and
-its tests compile only while Odin's `ODIN_INSPECTOR` symbol is active.
+The runtime, Editor, test, and sample assemblies compile only while Odin's
+`ODIN_INSPECTOR` symbol is active. Without Odin installed, the package adds no
+compiled assemblies to the project.
 
 ## Scope
 
