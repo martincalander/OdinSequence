@@ -53,23 +53,23 @@ public sealed class Fighter : MonoBehaviour
         LaneMember = nameof(FighterTimelineEvent.Track),
         LabelMember = nameof(FighterTimelineEvent.Label),
         ColorMember = nameof(FighterTimelineEvent.Color),
-        SnapInterval = 1d / 60d)]
+        SnapInterval = 1d)]
     public List<FighterTimelineEvent> Attack = new List<FighterTimelineEvent>
     {
-        new FighterTimelineEvent("Startup", 0f, 0.18f, FighterTrack.Animation, Color.cyan),
-        new FighterTimelineEvent("Active Hitbox", 0.18f, 0.10f, FighterTrack.Hitbox, Color.red),
-        new FighterTimelineEvent("Counterable Hurtbox", 0.18f, 0.22f, FighterTrack.Hurtbox, Color.blue),
-        new FighterTimelineEvent("Camera Impact", 0.20f, 0.08f, FighterTrack.Camera, Color.yellow),
-        new FighterTimelineEvent("Slash VFX", 0.18f, 0.14f, FighterTrack.Vfx, Color.magenta),
-        new FighterTimelineEvent("Hit Audio", 0.20f, 0.08f, FighterTrack.Audio, Color.green),
-        new FighterTimelineEvent("Recovery", 0.28f, 0.32f, FighterTrack.Animation, Color.cyan)
+        new FighterTimelineEvent("Startup", 0, 11, FighterTrack.Animation, Color.cyan),
+        new FighterTimelineEvent("Active Hitbox", 11, 6, FighterTrack.Hitbox, Color.red),
+        new FighterTimelineEvent("Counterable Hurtbox", 11, 13, FighterTrack.Hurtbox, Color.blue),
+        new FighterTimelineEvent("Camera Impact", 12, 5, FighterTrack.Camera, Color.yellow),
+        new FighterTimelineEvent("Slash VFX", 11, 8, FighterTrack.Vfx, Color.magenta),
+        new FighterTimelineEvent("Hit Audio", 12, 5, FighterTrack.Audio, Color.green),
+        new FighterTimelineEvent("Recovery", 17, 19, FighterTrack.Animation, Color.cyan)
     };
 }
 
 [Serializable]
 public sealed class FighterTimelineEvent
 {
-    public FighterTimelineEvent(string label, float start, float duration, int track, Color color)
+    public FighterTimelineEvent(string label, int start, int duration, int track, Color color)
     {
         Label = label;
         Start = start;
@@ -79,8 +79,8 @@ public sealed class FighterTimelineEvent
     }
 
     public string Label;
-    public float Start;
-    public float Duration;
+    public int Start;
+    public int Duration;
     public int Track;
     public Color Color = Color.white;
 }
@@ -96,6 +96,7 @@ public static class FighterTrack
 }
 ```
 
+This example stores timing in frames, so every edit snaps to one whole frame.
 The start and duration paths are required. Lane, label, and color paths are
 optional. Paths are relative to each list element and may use dots, such as
 `Timing.Start`.

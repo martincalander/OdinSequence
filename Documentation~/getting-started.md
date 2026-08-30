@@ -38,9 +38,12 @@ Lane, label, and color are optional:
     LaneMember = nameof(FighterTimelineEvent.Track),
     LabelMember = nameof(FighterTimelineEvent.Label),
     ColorMember = nameof(FighterTimelineEvent.Color),
-    SnapInterval = 1d / 60d)]
+    SnapInterval = 1d)]
 public List<FighterTimelineEvent> Attack;
 ```
+
+The Fighter sample stores start and duration as integer frame numbers and snaps
+each edit to one whole frame.
 
 Open the component in Odin Inspector. The strip appears above the normal list.
 If configuration is incomplete, the Inspector reports the issue and leaves the
